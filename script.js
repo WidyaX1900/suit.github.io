@@ -8,6 +8,10 @@ const playerScoreTxt = document.getElementById("playerScore");
 const enemyScoreTxt = document.getElementById("enemyScore");
 const replayButton = document.getElementById("replayButton");
 const replayContainer = document.getElementById("replayContainer");
+const cheatButton = document.getElementById("cheatButton");
+const cheatNavigator = cheatButton.parentElement;
+const cheatContainer = cheatNavigator.parentElement;
+const cheatInput = document.getElementById("cheatInput");
 
 let playerChoice = 0;
 let enemyChoice = 0;
@@ -79,4 +83,20 @@ replayButton.addEventListener("click", (event) => {
   enemySelect.nextElementSibling.classList.remove("hidden");
 
   gameResultTxt.innerText = "R E A D Y";
-})
+});
+
+cheatButton.addEventListener("click", (event) => {
+  cheatNavigator.classList.toggle("popup");
+});
+
+function cheatResult(status) {
+  let cheatEl = document.createElement("div");
+  cheatEl.classList.add("cheat-result");
+  
+  if(status == 'active') {
+    cheatEl.classList.add("cheat-activated")
+  } else {
+    cheatEl.classList.add("cheat-failed");
+  }
+  cheatContainer.append = cheatEl;
+}
