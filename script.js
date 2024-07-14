@@ -20,6 +20,7 @@ let playerScore = 0;
 let enemyScore = 0;
 let gameResult = '';
 let cheatTimeout;
+let isCheatEnabled = false;
 
 /* 
   ROCK, PAPER, SCISSOR NUMBER LABEL:
@@ -51,7 +52,7 @@ playerAtkBtnArr.forEach((playerAtkBtn, index) => {
     const selectAttribute = playerSelect.getAttribute("src").split("/");
     const fileName = selectAttribute[4];
 
-    playerChoice = index + 1;
+    playerChoice =  isCheatEnabled ? 4 : index + 1;
     enemyChoice = Math.floor((Math.random() * 3) + 1);
 
     if(playerChoice === enemyChoice) {
@@ -114,6 +115,7 @@ cheatEnterButton.addEventListener("click", (event) => {
     clearTimeout(cheatTimeout);
     if(cheat === "AIOKLM" || cheat === "aioklm") {
       // console.log("Cheat Activated");
+      isCheatEnabled = true;
       cheatResult("active");
     } else {
       // console.log("Wrong Code!");
