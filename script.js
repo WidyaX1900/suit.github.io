@@ -44,14 +44,6 @@ playerAtkBtnArr.forEach((playerAtkBtn, index) => {
     const selectAttribute = playerSelect.getAttribute("src").split("/");
     const fileName = selectAttribute[4];
 
-    if (fileName == "player1-rock.png") {
-      playerSelect.classList.add("img-rock");
-    } else {
-      if (playerSelect.classList.contains("img-rock")) {
-        playerSelect.classList.remove("img-rock");
-      }
-    }
-
     playerChoice = index + 1;
     enemyChoice = Math.floor((Math.random() * 3) + 1);
 
