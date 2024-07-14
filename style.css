@@ -25,6 +25,7 @@ body {
 .one {
   background: linear-gradient(rgb(115, 219, 239), rgb(48, 121, 224));
   border-right: 10px solid white;
+  position: relative;
 }
 
 .two {
@@ -182,11 +183,11 @@ body {
 }
 
 .cheat-container {
+  width: 55%;
   height: 120px;
-  position: fixed;
-  top: 50px;
+  position: absolute;
+  bottom: 0;
   left: 20px;
-  width: 30%;
 }
 
 .cheat-container .cheat-button {
@@ -217,7 +218,6 @@ body {
 
 .cheat-navigator {
   position: relative;
-  overflow: hidden;
 }
 
 .cheat-result {

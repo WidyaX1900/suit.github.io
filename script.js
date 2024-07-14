@@ -12,12 +12,14 @@ const cheatButton = document.getElementById("cheatButton");
 const cheatNavigator = cheatButton.parentElement;
 const cheatContainer = cheatNavigator.parentElement;
 const cheatInput = document.getElementById("cheatInput");
+const cheatEnterButton = cheatInput.nextElementSibling;
 
 let playerChoice = 0;
 let enemyChoice = 0;
 let playerScore = 0;
 let enemyScore = 0;
 let gameResult = '';
+let cheatTimeout;
 
 /* 
   ROCK, PAPER, SCISSOR NUMBER LABEL:
@@ -34,6 +36,7 @@ const enemyChoiceImg = [
 
 playerAtkBtnArr.forEach((playerAtkBtn, index) => {
   playerAtkBtn.addEventListener("click", (event) => {
+    cheatContainer.classList.add("hidden");
     playerSelect.parentElement.classList.remove("hidden");
     playerReady.classList.add("hidden");
     replayContainer.classList.remove("hidden");
@@ -77,6 +80,7 @@ replayButton.addEventListener("click", (event) => {
   playerSelect.parentElement.classList.add("hidden");
   playerReady.classList.remove("hidden");
   replayContainer.classList.add("hidden");
+  cheatContainer.classList.remove("hidden");
 
   enemySelect.classList.add("hidden");
   enemySelect.parentElement.classList.add("opening");
@@ -93,10 +97,31 @@ function cheatResult(status) {
   let cheatEl = document.createElement("div");
   cheatEl.classList.add("cheat-result");
   
-  if(status == 'active') {
+  if(status == "active") {
     cheatEl.classList.add("cheat-activated")
+    cheatEl.innerHTML = "Cheat Activated";
   } else {
     cheatEl.classList.add("cheat-failed");
+    cheatEl.innerHTML = "Wrong Code";
   }
-  cheatContainer.append = cheatEl;
+  cheatContainer.append(cheatEl);
 }
+
+cheatEnterButton.addEventListener("click", (event) => {
+  const cheat = cheatInput.value;  
+  if(cheat !== "") {
+    cheatNavigator.remove();
+    clearTimeout(cheatTimeout);
+    if(cheat === "AIOKLM" || cheat === "aioklm") {
+      // console.log("Cheat Activated");
+      cheatResult("active");
+    } else {
+      // console.log("Wrong Code!");
+      cheatResult("wrong");
+    }
+    cheatTimeout = setTimeout(() => {
+      cheatContainer.remove();
+    }, 2000);
+  }
+
+});
